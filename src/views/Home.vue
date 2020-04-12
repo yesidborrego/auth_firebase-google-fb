@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Bienvenid@ <span v-text="user.name"></span></h1>
+    <h1>Bienvenid@ <span v-text="user ? user.name : null"></span></h1>
   </div>
 </template>
 

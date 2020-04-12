@@ -58,16 +58,17 @@
         firebase.auth().languageCode = 'es';
         try {
           let data = await firebase.auth().signInWithPopup(provider);
-          let user = data.user;
+          // let user = data.user;
           // Contruct users data
           const userData = {
-            name  : user.displayName,
-            email : user.email,
-            uid   : user.uid,
-            photo : user.photoURL
+            name  : data.user.displayName,
+            email : data.user.email,
+            uid   : data.user.uid,
+            photo : data.user.photoURL
           }
           // Save in db
-          await dbFirebase.collection('users').doc(userData.uid).set(userData);
+          // await dbFirebase.collection('users').doc(userData.uid).set(userData);
+          // this.setUserData(userData.user);
           this.setUserData(userData);
           router.push({name: 'Home'});
         } catch (error) {

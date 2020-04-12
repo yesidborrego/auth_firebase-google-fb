@@ -1,21 +1,32 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { auth } from "@/firebase";
+import { auth, dbFirebase } from "@/firebase";
 import router from "@/router/index";
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: {},
+    user: '',
   },
   mutations: {
     setUserData(state, payload) {
-      state.user = payload;
+      (payload === null) ? state.user = '' : state.user = payload;
     }
   },
   actions: {
-    setUserData({commit}, payload) {
+    async setUserData({commit}, payload) {
+      try {
+        let existUser = await dbFirebase.collection('users').doc(payload.uid).get();
+        if(existUser.exists){
+          payload.photo = existUser.data().photo;
+        } else {
+          // Save in db
+          await dbFirebase.collection('users').doc(payload.uid).set(payload);        
+        }
+      } catch (error) {
+        console.log('error:', error);
+      }
       commit('setUserData', payload);
     },
     logout({commit}) {
