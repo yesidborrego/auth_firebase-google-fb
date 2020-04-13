@@ -21,9 +21,9 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn @click="logout">
+      <v-btn @click="logout" small>
         <span class="mr-2">Log Out</span>
-        <v-icon>fas fa-address-book</v-icon>
+        <v-icon small>fas fa-sign-out-alt</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -75,6 +75,7 @@
         drawer: false,
         items: [
           { title: 'Dashboard', icon: 'fas fa-tachometer-alt', to: {name: 'Home'} },
+          { title: 'Chat', icon: 'fas fa-comments', to: {name: 'Chat'} },
           { title: 'Account', icon: 'fas fa-user', to: {name: 'Login'} },
           { title: 'Admin', icon: 'fas fa-users-cog', to: {name: 'Admin'} },
         ],      }

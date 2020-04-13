@@ -7,6 +7,9 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 // Firebase
 import { auth } from "@/firebase.js";
+// Scroll in chat
+import VueChatScroll from 'vue-chat-scroll'
+Vue.use(VueChatScroll)
 
 Vue.config.productionTip = false
 
